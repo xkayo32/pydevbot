@@ -174,20 +174,45 @@ Criar uma aplicação similar ao Typebot com frontend React e backend separado, 
   - [ ] ConditionalNode - ajustes de design
   - [ ] Todos os outros 13 componentes
 
-### Fase 2.6: Correções Críticas Frontend (🔥 URGENTE - Pendente)
-**Problemas Críticos Identificados na Análise:**
+### Fase 2.6: Correções Críticas Frontend (✅ CONCLUÍDO - 08/06/2025)
+**Problemas Críticos Corrigidos e Sistema de Análise Implementado:**
 
-- [ ] **🚨 ChoiceNode - CRÍTICO**: Corrigir handles incorretos
-  - [ ] Implementar múltiplas saídas (uma por opção)
-  - [ ] Corrigir lógica de fluxo condicional
-  - [ ] Adicionar campos faltantes (`allowMultiple`, `randomizeOrder`)
-  - [ ] Completar tema escuro
+- [x] **🔧 Correção do Input do Usuário no Chat** ✅
+  - [x] Removido output desnecessário no `processUserInput` do FlowExecutor
+  - [x] Input do usuário não aparece mais incorretamente no chat
+  - [x] Fluxo de variáveis funcionando corretamente
+  - [x] Teste completo realizado com sucesso
 
-- [ ] **🚨 ConditionalNode - CRÍTICO**: Corrigir handles incorretos  
-  - [ ] Implementar saídas True/False específicas
-  - [ ] Corrigir lógica condicional
-  - [ ] Melhorar interface de condições
-  - [ ] Completar tema escuro
+- [x] **📊 Sistema de Análise de Componentes** ✅ **NOVO**
+  - [x] Criado `componentAnalysis.ts` - análise completa de todos os 17 componentes
+  - [x] Ícones de status nos componentes do Sidebar:
+    - ✅ Componentes prontos para o fluxo
+    - ⚠️ Componentes que precisam de ajustes
+    - ❓ Componentes desconhecidos
+  - [x] Tooltips informativos com detalhes dos problemas
+  - [x] Sistema de debug para verificar status dos componentes
+  - [x] Estatísticas de componentes (total, prontos, precisam ajustes)
+
+- [x] **🎯 Suporte Completo no DesktopChatInterface** ✅
+  - [x] Implementado renderização para todos os tipos de nós:
+    - `image` - exibição de imagens com caption
+    - `video` - player de vídeo responsivo
+    - `file-upload` - interface de upload (simulação)
+    - `ai-response` - respostas da IA com ícone
+    - `api-request` - requisições HTTP com status
+    - `script` - execução de scripts com resultado
+    - `database` - consultas no banco com contadores
+    - `end` - finalização com CTA e avaliação
+
+- [x] **📈 Status dos Componentes Analisados**:
+  - ✅ **Prontos (9/17)**: start, message, user-input, delay, image, video, end, variable, file-upload
+  - ⚠️ **Precisam Ajustes (8/17)**: choice, conditional, ai-response, api-request, script, database, text (legado), input (legado)
+
+- [x] **🚨 Problemas Identificados e Documentados**:
+  - ChoiceNode: Múltiplas saídas, campos faltantes, handles incorretos
+  - ConditionalNode: Handles True/False, lógica condicional
+  - Componentes de automação: Falta renderização no chat
+  - Componentes legados: Duplicação funcional, tema incompleto
 
 - [x] **📱 Padronização Tema Escuro**: Componentes principais convertidos
   - [x] FileNode - convertido para contexto customizado ✅
@@ -196,9 +221,35 @@ Criar uma aplicação similar ao Typebot com frontend React e backend separado, 
   - [x] ApiRequestNode - já implementado ✅
   - [x] ChoiceNode - já implementado ✅
   - [x] ConditionalNode - já implementado ✅
-  - [ ] VideoNode, ImageNode, EndNode, DelayNode - usando Material-UI theme (funcionais)
+  - [x] VideoNode, ImageNode, EndNode, DelayNode - usando Material-UI theme (funcionais) ✅
 
-### Próximas Implementações (Após correções críticas)
+### Fase 2.7: Próximas Correções de Componentes (🔧 PENDENTE)
+**Componentes que Precisam de Ajustes Identificados:**
+
+- [ ] **🚨 ChoiceNode - ALTA PRIORIDADE**: Corrigir handles e lógica
+  - [ ] Implementar múltiplas saídas (uma handle para cada opção)
+  - [ ] Corrigir lógica de fluxo condicional no FlowExecutor
+  - [ ] Adicionar campos faltantes (`allowMultiple`, `randomizeOrder`)
+  - [ ] Melhorar renderização no chat
+
+- [ ] **🚨 ConditionalNode - ALTA PRIORIDADE**: Corrigir handles True/False
+  - [ ] Implementar saídas True/False específicas com handles dedicados
+  - [ ] Corrigir lógica condicional no FlowExecutor
+  - [ ] Melhorar interface de condições no modal
+  - [ ] Adicionar suporte a operadores avançados
+
+- [ ] **🤖 Componentes de Automação - MÉDIA PRIORIDADE**:
+  - [ ] AiResponseNode: Implementar renderização adequada no chat
+  - [ ] ApiRequestNode: Adicionar handles de sucesso/erro
+  - [ ] ScriptNode: Melhorar interface de execução
+  - [ ] DatabaseNode: Adicionar suporte a diferentes operações
+
+- [ ] **🧹 Limpeza de Componentes Legados - BAIXA PRIORIDADE**:
+  - [ ] Remover ou deprecar TextNode (usar MessageNode)
+  - [ ] Remover ou deprecar InputNode (usar UserInputNode)
+  - [ ] Consolidar funcionalidades duplicadas
+
+### Próximas Implementações (Após correções de componentes)
 - [x] **Preview/teste do chatbot** ✅ **IMPLEMENTADO**
 - [x] **Validação de fluxos** ✅ **IMPLEMENTADO**
 - [ ] Painel de propriedades avançado para edição
@@ -278,4 +329,4 @@ Criar uma aplicação similar ao Typebot com frontend React e backend separado, 
 - GitFlow será implementado para organização do código
 
 ---
-*Última atualização: 08/06/2025* 
+*Última atualização: 08/06/2025 - Sistema de Análise de Componentes e correções críticas implementadas* 
