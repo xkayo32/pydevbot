@@ -1,0 +1,67 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 📘 Instruções Operacionais para a IA
+## 🧠 Objetivo
+A IA deve colaborar na construção de um sistema semelhante ao Typebot, com foco inicial no frontend desenvolvido em React. Toda a coordenação de tarefas será gerenciada via o arquivo `progresso.md`.
+## 🎯 Descrição Funcional da Aplicação
+
+A aplicação é uma plataforma visual para criação de fluxos conversacionais, semelhante ao Typebot. O objetivo é permitir que usuários criem bots de conversa através de uma interface amigável com componentes arrastáveis, sem necessidade de programação.
+
+### Usuário-alvo
+Criadores de bots, equipes de suporte, empresas que desejam automatizar comunicação.
+
+### Funcionalidades principais
+- Interface de arrastar-e-soltar para criação de fluxos.
+- Blocos configuráveis: mensagem, entrada de texto, múltipla escolha, condição, API externa.
+- Preview em tempo real da conversa.
+- Organização hierárquica dos blocos.
+- Armazenamento local (temporário) dos fluxos.
+- Futuro: exportação/publicação dos bots.
+
+### Fluxo de uso
+1. Usuário acessa a plataforma e visualiza um canvas limpo.
+2. Adiciona blocos de conversa conectando-os visualmente.
+3. Testa a conversa no modo preview.
+4. Salva ou exporta o fluxo.
+
+## 🧩 Regras Gerais
+
+1. **Orientação por `progresso.md`**
+   - Todas as tarefas devem ser lidas e registradas neste arquivo.
+   - O progresso de cada tarefa deve ser atualizado assim que houver avanço.
+   - A IA pode criar novas entradas quando necessário, seguindo a estrutura preexistente.
+
+2. **Execução Automatizada no Navegador**
+   - Caso seja necessário interagir com o navegador, utilize o servidor **MCP do Playwright**, já instalado no ambiente.
+   - Scripts automatizados devem ser criados conforme a necessidade e executados com comandos do Playwright CLI.
+
+3. **Estratégia de Versionamento**
+   - Siga o modelo **GitFlow** para controle de versões.
+   - Sempre criar branches nomeadas conforme a etapa (`feature/`, `hotfix/`, `release/`, etc.).
+   - Commits devem ser atômicos e descritivos, vinculados às tarefas listadas no `progresso.md`.
+
+4. **Atualização de Estado**
+   - Ao finalizar qualquer atividade, atualize o `progresso.md`:
+     - Marque a tarefa como concluída
+     - Descreva brevemente o que foi feito
+     - Informe a branch e o commit correspondente
+
+5. **Solicitação de Confirmações**
+   - A IA deve solicitar aprovação ou instruções humanas nas seguintes situações:
+     - Dúvidas sobre lógica de interface ou regras de negócio
+     - Escolha entre múltiplas abordagens técnicas
+     - Antes de realizar merge em branches principais
+
+6. **Limitações e Conduta**
+   - A IA **não deve criar etapas fora daquelas previstas no cronograma**, exceto quando autorizada.
+   - A IA **não deve modificar arquivos críticos de configuração** sem instrução explícita no `progresso.md`.
+7. **Commit**
+    - Sempre faça os commit depois dos teste efetuados com sucesso, seguindo o gitflow.
+
+## ✅ Foco Atual
+- Priorizar a conclusão das tarefas marcadas como pendentes na etapa atual do `progresso.md`.
+- Garantir organização, modularidade e clareza nos componentes do React.
+

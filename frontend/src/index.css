@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -29,4 +33,31 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+/* Componentes personalizados do chat */
+@layer components {
+  .chat-bubble {
+    @apply rounded-2xl px-4 py-2 max-w-xs break-words;
+  }
+  
+  .chat-bubble-user {
+    @apply bg-primary-500 text-white ml-auto;
+  }
+  
+  .chat-bubble-bot {
+    @apply bg-white text-gray-800 shadow-sm border border-gray-100;
+  }
+  
+  .chat-bubble-system {
+    @apply bg-gray-100 text-gray-600 text-sm text-center mx-auto;
+  }
+  
+  .typing-indicator {
+    @apply flex space-x-1 p-3;
+  }
+  
+  .typing-dot {
+    @apply w-2 h-2 bg-gray-400 rounded-full animate-typing;
+  }
 } 

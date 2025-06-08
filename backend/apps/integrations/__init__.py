@@ -1,0 +1,1 @@
+# App para integrações externas (APIs, webhooks, etc.) 
