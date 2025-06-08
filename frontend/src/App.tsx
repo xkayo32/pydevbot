@@ -77,16 +77,16 @@ const initialNodes: Node[] = [
   },
   {
     id: '2',
-    type: 'text',
+    type: 'message',
     data: { 
       label: 'Mensagem de Boas-vindas',
-      message: 'Olá! Bem-vindo ao nosso chatbot. Como posso ajudá-lo hoje?'
+      text: 'Olá! Bem-vindo ao nosso chatbot. Como posso ajudá-lo hoje?'
     },
     position: { x: 100, y: 150 },
   },
   {
     id: '3',
-    type: 'input',
+    type: 'user-input',
     data: { 
       label: 'Pergunta do Nome',
       placeholder: 'Digite seu nome...',
@@ -790,6 +790,8 @@ const AppContent = () => {
           nodes={nodes}
           edges={edges}
           projectName={currentProject?.name}
+          variables={{}}
+          darkMode={darkMode}
         />
       </Box>
     </ReactFlowProvider>

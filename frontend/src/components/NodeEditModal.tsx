@@ -20,15 +20,21 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  InputAdornment
+  InputAdornment,
+  Paper,
+  Divider,
+  alpha
 } from '@mui/material';
 import {
   Close as CloseIcon,
   Add as AddIcon,
   Delete as DeleteIcon,
-  ExpandMore
+  ExpandMore,
+  Edit as EditIcon,
+  Settings as SettingsIcon
 } from '@mui/icons-material';
 import VariableSelector from './VariableSelector';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface NodeEditModalProps {
   open: boolean;
@@ -40,6 +46,7 @@ interface NodeEditModalProps {
 const NodeEditModal = ({ open, node, onClose, onSave }: NodeEditModalProps) => {
   const [editData, setEditData] = useState<any>({});
   const [choices, setChoices] = useState<any[]>([]);
+  const { darkMode } = useTheme();
 
   useEffect(() => {
     if (node) {
@@ -827,33 +834,115 @@ function main() {
       maxWidth="md"
       fullWidth
       PaperProps={{
-        sx: { minHeight: '60vh' }
+        sx: { 
+          minHeight: '60vh',
+          backgroundColor: darkMode ? '#1e1e1e' : '#ffffff',
+          backgroundImage: 'none'
+        }
       }}
     >
-      <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Typography variant="h6">
-          Editar {node.data.label}
-        </Typography>
-        <IconButton onClick={onClose}>
+      <Box sx={{
+        background: darkMode 
+          ? 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)'
+          : 'linear-gradient(135deg, #3b82f6 0%, #1e40af 100%)',
+        color: 'white',
+        p: 3,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+      }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Box sx={{
+            p: 1.5,
+            borderRadius: 2,
+            backgroundColor: alpha('#ffffff', 0.2),
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <EditIcon sx={{ fontSize: 24 }} />
+          </Box>
+          <Box>
+            <Typography variant="h5" sx={{ fontWeight: 600, mb: 0.5 }}>
+              Editar Componente
+            </Typography>
+            <Typography variant="body2" sx={{ opacity: 0.9 }}>
+              {node.data.label} • Tipo: {node.type}
+            </Typography>
+          </Box>
+        </Box>
+        <IconButton 
+          onClick={onClose}
+          sx={{ 
+            color: 'white',
+            backgroundColor: alpha('#ffffff', 0.1),
+            '&:hover': {
+              backgroundColor: alpha('#ffffff', 0.2)
+            }
+          }}
+        >
           <CloseIcon />
         </IconButton>
-      </DialogTitle>
+      </Box>
       
-      <DialogContent dividers>
-        {renderBasicFields()}
-        {renderFieldsByType()}
+      <DialogContent 
+        sx={{ 
+          p: 3,
+          backgroundColor: darkMode ? '#1e1e1e' : '#fafafa',
+          '&.MuiDialogContent-dividers': {
+            borderColor: darkMode ? '#333' : '#e0e0e0'
+          }
+        }}
+      >
+        <Paper 
+          elevation={0}
+          sx={{ 
+            p: 3, 
+            backgroundColor: darkMode ? '#2a2a2a' : '#ffffff',
+            border: `1px solid ${darkMode ? '#333' : '#e0e0e0'}`,
+            borderRadius: 2
+          }}
+        >
+          {renderBasicFields()}
+          {renderFieldsByType()}
+        </Paper>
       </DialogContent>
       
-      <DialogActions>
-        <Button onClick={onClose}>
+      <DialogActions 
+        sx={{ 
+          p: 3,
+          backgroundColor: darkMode ? '#1e1e1e' : '#fafafa',
+          borderTop: `1px solid ${darkMode ? '#333' : '#e0e0e0'}`,
+          gap: 2
+        }}
+      >
+        <Button 
+          onClick={onClose}
+          variant="outlined"
+          sx={{
+            borderColor: darkMode ? '#555' : '#ccc',
+            color: darkMode ? '#fff' : '#666',
+            '&:hover': {
+              borderColor: darkMode ? '#777' : '#999',
+              backgroundColor: darkMode ? alpha('#ffffff', 0.05) : alpha('#000000', 0.05)
+            }
+          }}
+        >
           Cancelar
         </Button>
         <Button
           onClick={handleSave}
           variant="contained"
-          color="primary"
+          sx={{
+            background: 'linear-gradient(135deg, #3b82f6 0%, #1e40af 100%)',
+            boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
+            '&:hover': {
+              background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+              boxShadow: '0 6px 16px rgba(59, 130, 246, 0.4)'
+            }
+          }}
         >
-          Salvar
+          Salvar Alterações
         </Button>
       </DialogActions>
     </Dialog>

@@ -119,7 +119,39 @@ Criar uma aplicação similar ao Typebot com frontend React e backend separado, 
   - [x] Preservação de contexto e variáveis
   - [x] Estados de erro e validação
 
-### Fase 2.5: Correções Críticas Frontend (🔥 URGENTE - Pendente)
+### Fase 2.5: Melhorias de Design e Componentes (🎨 PRINCIPAL - Em Andamento)
+**Etapa Crítica de Ajustes Visuais e Funcionais:**
+
+- [x] **🔍 Investigação de Problemas de Fundo**
+  - [x] Identificado problema: TextNode não tinha tema escuro
+  - [x] Corrigido: Alterado nó inicial de 'text' para 'message' (com tema escuro)
+  - [x] Removido fundo branco desnecessário do exemplo inicial
+
+- [ ] **📋 Sistema de Grupos de Blocos**
+  - [ ] Implementar agrupamento de blocos
+  - [ ] Sistema de ordenação respeitando grupos
+  - [ ] Interface para criação/edição de grupos
+
+- [x] **🔗 Melhoria das Conexões**
+  - [x] Melhoradas legendas para saídas do "Entrada de Texto"
+  - [x] Implementados chips visuais para "✓ Válido" e "✗ Inválido"
+  - [x] Legendas mais explicativas e visualmente atrativas
+
+- [x] **🎨 Redesign dos Modais de Edição**
+  - [x] Header moderno com gradiente azul
+  - [x] Ícone e informações do componente no header
+  - [x] Tema escuro consistente implementado
+  - [x] Botões com design melhorado e gradientes
+  - [x] Layout em Paper com bordas arredondadas
+
+- [ ] **🧩 Ajustes Componente por Componente**
+  - [x] UserInputNode - legendas melhoradas ✅
+  - [x] MessageNode - tema escuro já implementado ✅
+  - [ ] ChoiceNode - ajustes de design
+  - [ ] ConditionalNode - ajustes de design
+  - [ ] Todos os outros 13 componentes
+
+### Fase 2.6: Correções Críticas Frontend (🔥 URGENTE - Pendente)
 **Problemas Críticos Identificados na Análise:**
 
 - [ ] **🚨 ChoiceNode - CRÍTICO**: Corrigir handles incorretos

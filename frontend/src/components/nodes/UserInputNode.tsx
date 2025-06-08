@@ -257,38 +257,46 @@ const UserInputNode = ({ data, selected }: NodeProps<UserInputNodeData>) => {
         />
         
         {/* Labels para handles */}
-        <Typography 
-          variant="caption" 
-          sx={{ 
-            position: 'absolute',
-            bottom: -20,
-            left: '25%',
-            fontSize: '0.6rem',
-            color: '#10b981',
-            fontWeight: 600,
-            backgroundColor: darkMode ? '#1f2937' : '#ffffff',
-            px: 0.5,
-            borderRadius: 0.5
-          }}
-        >
-          Válido
-        </Typography>
-        <Typography 
-          variant="caption" 
-          sx={{ 
-            position: 'absolute',
-            bottom: -20,
-            right: '25%',
-            fontSize: '0.6rem',
-            color: '#ef4444',
-            fontWeight: 600,
-            backgroundColor: darkMode ? '#1f2937' : '#ffffff',
-            px: 0.5,
-            borderRadius: 0.5
-          }}
-        >
-          Inválido
-        </Typography>
+        <Box sx={{
+          position: 'absolute',
+          bottom: -35,
+          left: 0,
+          right: 0,
+          display: 'flex',
+          justifyContent: 'space-between',
+          px: 2
+        }}>
+          <Chip
+            label="✓ Válido"
+            size="small"
+            sx={{
+              fontSize: '0.65rem',
+              height: 20,
+              backgroundColor: alpha('#10b981', 0.1),
+              color: '#059669',
+              border: `1px solid ${alpha('#10b981', 0.3)}`,
+              fontWeight: 600,
+              '& .MuiChip-label': {
+                px: 1
+              }
+            }}
+          />
+          <Chip
+            label="✗ Inválido"
+            size="small"
+            sx={{
+              fontSize: '0.65rem',
+              height: 20,
+              backgroundColor: alpha('#ef4444', 0.1),
+              color: '#dc2626',
+              border: `1px solid ${alpha('#ef4444', 0.3)}`,
+              fontWeight: 600,
+              '& .MuiChip-label': {
+                px: 1
+              }
+            }}
+          />
+        </Box>
       </Card>
     </Box>
   );
