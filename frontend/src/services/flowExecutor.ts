@@ -634,8 +634,8 @@ export class FlowExecutor {
         const nextNodeId = this.getNextNodeId(node.id);
         return {
           success: true,
-          nextNodeId,
-          output: { type: 'user-input-response', value: userInput }
+          nextNodeId
+          // Removido output para evitar mostrar input do usuário no chat
         };
 
       case 'choice':

@@ -11,7 +11,8 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Chip
+  Chip,
+  Tooltip
 } from '@mui/material';
 import { 
   ChatBubbleOutline, 
@@ -34,6 +35,8 @@ import {
   Flag,
   Repeat
 } from '@mui/icons-material';
+
+import { getStatusIcon, getComponentStatus } from '../utils/componentAnalysis';
 
 const SIDEBAR_WIDTH = 260;
 
@@ -297,37 +300,76 @@ const Sidebar = ({ open }: SidebarProps) => {
             </AccordionSummary>
             <AccordionDetails sx={{ pt: 0, px: 1 }}>
               <List dense sx={{ py: 0 }}>
-                {category.nodes.map((node: NodeType) => (
-                  <ListItem
-                    key={node.type}
-                    draggable
-                    onDragStart={(event) => onDragStart(event, node.type)}
-                    sx={{
-                      cursor: 'grab',
-                      '&:hover': {
-                        backgroundColor: 'action.hover',
-                      },
-                      '&:active': {
-                        cursor: 'grabbing',
-                      },
-                      mb: 0.5,
-                      borderRadius: 1,
-                      py: 0.5,
-                    }}
-                  >
-                    <ListItemIcon sx={{ minWidth: 32 }}>
-                      {node.icon}
-                    </ListItemIcon>
-                    <Box>
-                      <ListItemText 
-                        primary={node.label}
-                        secondary={node.description}
-                        primaryTypographyProps={{ variant: 'body2', fontWeight: 500 }}
-                        secondaryTypographyProps={{ variant: 'caption' }}
-                      />
-                    </Box>
-                  </ListItem>
-                ))}
+                {category.nodes.map((node: NodeType) => {
+                  const statusIcon = getStatusIcon(node.type);
+                  const componentStatus = getComponentStatus(node.type);
+                  
+                  return (
+                    <Tooltip
+                      key={node.type}
+                      title={
+                        componentStatus ? (
+                          <Box>
+                            <Typography variant="caption" display="block">
+                              <strong>{componentStatus.name}</strong>
+                            </Typography>
+                            <Typography variant="caption" display="block" sx={{ mt: 0.5 }}>
+                              Status: {componentStatus.readyForFlow ? 'Pronto ✅' : 'Necessita ajustes ⚠️'}
+                            </Typography>
+                            {componentStatus.issues.length > 0 && (
+                              <Box sx={{ mt: 0.5 }}>
+                                <Typography variant="caption" display="block">
+                                  <strong>Problemas:</strong>
+                                </Typography>
+                                {componentStatus.issues.map((issue, index) => (
+                                  <Typography key={index} variant="caption" display="block" sx={{ ml: 1 }}>
+                                    • {issue}
+                                  </Typography>
+                                ))}
+                              </Box>
+                            )}
+                          </Box>
+                        ) : node.description
+                      }
+                      placement="right"
+                      arrow
+                    >
+                      <ListItem
+                        draggable
+                        onDragStart={(event) => onDragStart(event, node.type)}
+                        sx={{
+                          cursor: 'grab',
+                          '&:hover': {
+                            backgroundColor: 'action.hover',
+                          },
+                          '&:active': {
+                            cursor: 'grabbing',
+                          },
+                          mb: 0.5,
+                          borderRadius: 1,
+                          py: 0.5,
+                        }}
+                      >
+                        <ListItemIcon sx={{ minWidth: 32 }}>
+                          {node.icon}
+                        </ListItemIcon>
+                        <Box sx={{ flex: 1 }}>
+                          <ListItemText 
+                            primary={
+                              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                                <span>{node.label}</span>
+                                <span style={{ fontSize: '12px' }}>{statusIcon}</span>
+                              </Box>
+                            }
+                            secondary={node.description}
+                            primaryTypographyProps={{ variant: 'body2', fontWeight: 500 }}
+                            secondaryTypographyProps={{ variant: 'caption' }}
+                          />
+                        </Box>
+                      </ListItem>
+                    </Tooltip>
+                  );
+                })}
               </List>
             </AccordionDetails>
           </Accordion>

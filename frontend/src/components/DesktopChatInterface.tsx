@@ -388,6 +388,164 @@ export const DesktopChatInterface: React.FC<DesktopChatInterfaceProps> = ({
           </Box>
         );
 
+      case 'image':
+        return (
+          <Box>
+            {content.caption && (
+              <Typography variant="body1" sx={{ mb: 1, lineHeight: 1.5 }}>
+                {content.caption}
+              </Typography>
+            )}
+            <img 
+              src={content.url} 
+              alt={content.altText || 'Imagem'} 
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+                borderRadius: '8px',
+                display: 'block'
+              }}
+            />
+          </Box>
+        );
+
+      case 'video':
+        return (
+          <Box>
+            {content.caption && (
+              <Typography variant="body1" sx={{ mb: 1, lineHeight: 1.5 }}>
+                {content.caption}
+              </Typography>
+            )}
+            <Box
+              sx={{
+                position: 'relative',
+                paddingBottom: '56.25%', // 16:9 aspect ratio
+                height: 0,
+                overflow: 'hidden',
+                borderRadius: '8px',
+                backgroundColor: '#000'
+              }}
+            >
+              <iframe
+                src={content.url}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  border: 'none'
+                }}
+                allowFullScreen
+                title="Vídeo"
+              />
+            </Box>
+          </Box>
+        );
+
+      case 'file-upload':
+        return (
+          <Box>
+            <Typography variant="body1" sx={{ mb: 1, lineHeight: 1.5 }}>
+              📎 {content.prompt || 'Envie um arquivo:'}
+            </Typography>
+            <Typography variant="body2" sx={{ opacity: 0.8, fontStyle: 'italic' }}>
+              💡 Funcionalidade de upload será implementada em breve
+            </Typography>
+          </Box>
+        );
+
+      case 'ai-response':
+        return (
+          <Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1, gap: 1 }}>
+              <BotIcon sx={{ fontSize: 16, color: 'primary.main' }} />
+              <Typography variant="caption" color="primary">
+                Resposta da IA
+              </Typography>
+            </Box>
+            <Typography variant="body1" sx={{ lineHeight: 1.5 }}>
+              {content.response || 'Processando resposta da IA...'}
+            </Typography>
+          </Box>
+        );
+
+      case 'api-request':
+        return (
+          <Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1, gap: 1 }}>
+              <Typography variant="caption" color="text.secondary">
+                🔗 Requisição API ({content.method || 'GET'})
+              </Typography>
+            </Box>
+            <Typography variant="body2" sx={{ opacity: 0.8 }}>
+              {content.response?.data?.message || 'Processando requisição...'}
+            </Typography>
+          </Box>
+        );
+
+      case 'script':
+        return (
+          <Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1, gap: 1 }}>
+              <Typography variant="caption" color="text.secondary">
+                📜 Script executado ({content.language || 'javascript'})
+              </Typography>
+            </Box>
+            <Typography variant="body2" sx={{ opacity: 0.8 }}>
+              {content.result || 'Executando script...'}
+            </Typography>
+          </Box>
+        );
+
+      case 'database':
+        return (
+          <Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1, gap: 1 }}>
+              <Typography variant="caption" color="text.secondary">
+                🗄️ Consulta no banco ({content.operation || 'select'})
+              </Typography>
+            </Box>
+            <Typography variant="body2" sx={{ opacity: 0.8 }}>
+              {content.result?.rowCount ? `${content.result.rowCount} registros encontrados` : 'Processando consulta...'}
+            </Typography>
+          </Box>
+        );
+
+      case 'end':
+        return (
+          <Box>
+            <Typography variant="body1" sx={{ mb: 2, lineHeight: 1.5 }}>
+              {content.message || 'Conversa finalizada!'}
+            </Typography>
+            {content.ctaLabel && content.ctaUrl && (
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => window.open(content.ctaUrl, '_blank')}
+                sx={{ mt: 1 }}
+              >
+                {content.ctaLabel}
+              </Button>
+            )}
+            {content.showRating && (
+              <Box sx={{ mt: 2 }}>
+                <Typography variant="body2" sx={{ mb: 1 }}>
+                  Como foi sua experiência?
+                </Typography>
+                <Box sx={{ display: 'flex', gap: 1 }}>
+                  {[1, 2, 3, 4, 5].map((rating) => (
+                    <Button key={rating} size="small" variant="outlined">
+                      {rating}⭐
+                    </Button>
+                  ))}
+                </Box>
+              </Box>
+            )}
+          </Box>
+        );
+
       default:
         return (
           <Typography variant="body1" sx={{ lineHeight: 1.5 }}>
