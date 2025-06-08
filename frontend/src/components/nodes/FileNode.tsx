@@ -1,7 +1,8 @@
 import { memo } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
-import { Card, CardContent, Typography, Box, Chip, useTheme } from '@mui/material';
+import { Card, CardContent, Typography, Box, Chip } from '@mui/material';
 import { AttachFile, Cloud, Folder, CloudUpload } from '@mui/icons-material';
+import { useTheme } from '../../contexts/ThemeContext';
 
 interface FileNodeData {
   label: string;
@@ -15,13 +16,12 @@ interface FileNodeData {
 }
 
 const FileNode = ({ data, selected }: NodeProps<FileNodeData>) => {
-  const theme = useTheme();
-  const isDark = theme.palette.mode === 'dark';
+  const { darkMode } = useTheme();
   
   // Cores adaptáveis ao tema
-  const primaryColor = '#607d8b';
-  const backgroundColor = isDark ? '#1e1e1e' : '#eceff1';
-  const borderColor = isDark ? '#424242' : '#e0e0e0';
+  const primaryColor = darkMode ? '#90a4ae' : '#607d8b';
+  const backgroundColor = darkMode ? '#1e1e1e' : '#eceff1';
+  const borderColor = darkMode ? '#424242' : '#e0e0e0';
   
   const getOperationColor = (operation: string) => {
     switch (operation) {

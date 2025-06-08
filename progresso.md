@@ -145,6 +145,12 @@ Criar uma aplicação similar ao Typebot com frontend React e backend separado, 
   - [x] Layout em Paper com bordas arredondadas
   - [x] Botões com gradientes e efeitos hover modernos
 
+- [x] **💬 Correções no Sistema de Chat**
+  - [x] Corrigido problema do UserInputNode exibindo JSON em vez de input field
+  - [x] Adicionado suporte para tipo 'user-input' no ChatInterface
+  - [x] Campo de entrada funcional com placeholder correto
+  - [x] Fluxo de mensagens usuário/bot testado e funcionando
+
 - [ ] **🧩 Ajustes Componente por Componente**
   - [x] UserInputNode - legendas das saídas melhoradas ✅
   - [x] MessageNode - tema escuro já implementado ✅

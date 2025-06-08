@@ -1,7 +1,8 @@
 import { memo } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
-import { Card, CardContent, Typography, Box, Chip, useTheme } from '@mui/material';
+import { Card, CardContent, Typography, Box, Chip } from '@mui/material';
 import { Storage } from '@mui/icons-material';
+import { useTheme } from '../../contexts/ThemeContext';
 
 interface DatabaseNodeData {
   label: string;
@@ -13,14 +14,13 @@ interface DatabaseNodeData {
 }
 
 const DatabaseNode = ({ data, selected }: NodeProps<DatabaseNodeData>) => {
-  const theme = useTheme();
-  const isDark = theme.palette.mode === 'dark';
+  const { darkMode } = useTheme();
   
   // Cores adaptáveis ao tema
-  const primaryColor = '#795548';
-  const backgroundColor = isDark ? '#2d2520' : '#efebe9';
-  const borderColor = isDark ? '#424242' : '#e0e0e0';
-  const queryBackgroundColor = isDark ? '#1a1a1a' : '#263238';
+  const primaryColor = darkMode ? '#a1887f' : '#795548';
+  const backgroundColor = darkMode ? '#2d2520' : '#efebe9';
+  const borderColor = darkMode ? '#424242' : '#e0e0e0';
+  const queryBackgroundColor = darkMode ? '#1a1a1a' : '#263238';
   
   const getDbColor = (dbType: string) => {
     switch (dbType) {

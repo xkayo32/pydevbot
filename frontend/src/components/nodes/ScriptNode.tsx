@@ -1,7 +1,8 @@
 import { memo } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
-import { Card, CardContent, Typography, Box, Chip, useTheme } from '@mui/material';
+import { Card, CardContent, Typography, Box, Chip } from '@mui/material';
 import { Code, CheckCircle, Error } from '@mui/icons-material';
+import { useTheme } from '../../contexts/ThemeContext';
 
 interface ScriptNodeData {
   label: string;
@@ -13,14 +14,13 @@ interface ScriptNodeData {
 }
 
 const ScriptNode = ({ data, selected }: NodeProps<ScriptNodeData>) => {
-  const theme = useTheme();
-  const isDark = theme.palette.mode === 'dark';
+  const { darkMode } = useTheme();
   
   // Cores adaptáveis ao tema
-  const primaryColor = '#9c27b0';
-  const backgroundColor = isDark ? '#2d1b3d' : '#f3e5f5';
-  const borderColor = isDark ? '#424242' : '#e0e0e0';
-  const codeBackgroundColor = isDark ? '#1a1a1a' : '#424242';
+  const primaryColor = darkMode ? '#ce93d8' : '#9c27b0';
+  const backgroundColor = darkMode ? '#2d1b3d' : '#f3e5f5';
+  const borderColor = darkMode ? '#424242' : '#e0e0e0';
+  const codeBackgroundColor = darkMode ? '#1a1a1a' : '#424242';
   
   const getLanguageColor = (language: string) => {
     switch (language) {
