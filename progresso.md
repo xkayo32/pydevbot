@@ -173,13 +173,14 @@ Criar uma aplicação similar ao Typebot com frontend React e backend separado, 
   - [ ] Melhorar interface de condições
   - [ ] Completar tema escuro
 
-- [ ] **📱 Padronização Tema Escuro**: 6 componentes restantes
-  - [ ] FileNode - implementar tema escuro
-  - [ ] ScriptNode - implementar tema escuro  
-  - [ ] DatabaseNode - implementar tema escuro
-  - [ ] ApiRequestNode - implementar tema escuro
-  - [ ] LoopNode - implementar tema escuro
-  - [ ] Outros componentes identificados
+- [x] **📱 Padronização Tema Escuro**: Componentes principais convertidos
+  - [x] FileNode - convertido para contexto customizado ✅
+  - [x] ScriptNode - convertido para contexto customizado ✅
+  - [x] DatabaseNode - convertido para contexto customizado ✅
+  - [x] ApiRequestNode - já implementado ✅
+  - [x] ChoiceNode - já implementado ✅
+  - [x] ConditionalNode - já implementado ✅
+  - [ ] VideoNode, ImageNode, EndNode, DelayNode - usando Material-UI theme (funcionais)
 
 ### Próximas Implementações (Após correções críticas)
 - [x] **Preview/teste do chatbot** ✅ **IMPLEMENTADO**

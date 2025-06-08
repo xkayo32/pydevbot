@@ -39,6 +39,7 @@ import ProjectHeader from './components/ProjectHeader';
 import NodeEditModal from './components/NodeEditModal';
 import VariablesModal from './components/VariablesModal';
 import { PreviewModal } from './components/PreviewModal';
+import BlockGroupManager, { BlockGroup } from './components/BlockGroupManager';
 
 import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 import { VariablesProvider } from './contexts/VariablesContext';
@@ -143,6 +144,8 @@ const AppContent = () => {
   const [history, setHistory] = useState<{ nodes: Node[], edges: Edge[] }[]>([{ nodes: initialNodes, edges: initialEdges }]);
   const [historyIndex, setHistoryIndex] = useState(0);
   const [variablesModalOpen, setVariablesModalOpen] = useState(false);
+  const [groupsModalOpen, setGroupsModalOpen] = useState(false);
+  const [blockGroups, setBlockGroups] = useState<BlockGroup[]>([]);
 
   const [zoomLevel, setZoomLevel] = useState(100);
   const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
@@ -704,6 +707,7 @@ const AppContent = () => {
           canUndo={historyIndex > 0}
           canRedo={historyIndex < history.length - 1}
           onOpenVariables={() => setVariablesModalOpen(true)}
+          onOpenGroups={() => setGroupsModalOpen(true)}
         />
         
         <Box sx={{ display: 'flex', flexGrow: 1, height: 'calc(100vh - 64px)', overflow: 'hidden' }}>
@@ -792,6 +796,15 @@ const AppContent = () => {
           projectName={currentProject?.name}
           variables={{}}
           darkMode={darkMode}
+        />
+
+        {/* Modal de grupos */}
+        <BlockGroupManager
+          open={groupsModalOpen}
+          onClose={() => setGroupsModalOpen(false)}
+          groups={blockGroups}
+          onGroupsChange={setBlockGroups}
+          nodes={nodes}
         />
       </Box>
     </ReactFlowProvider>

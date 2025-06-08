@@ -29,7 +29,8 @@ import {
   Clear,
   DarkMode,
   LightMode,
-  Settings as SettingsIcon
+  Settings as SettingsIcon,
+  Folder as FolderIcon
 } from '@mui/icons-material';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -58,6 +59,7 @@ interface ProjectHeaderProps {
   canUndo?: boolean;
   canRedo?: boolean;
   onOpenVariables?: () => void;
+  onOpenGroups?: () => void;
 }
 
 const ProjectHeader = ({
@@ -75,7 +77,8 @@ const ProjectHeader = ({
   onClearAll,
   canUndo = false,
   canRedo = false,
-  onOpenVariables
+  onOpenVariables,
+  onOpenGroups
 }: ProjectHeaderProps) => {
   const [newProjectDialog, setNewProjectDialog] = useState(false);
   const [newProjectName, setNewProjectName] = useState('');
@@ -260,6 +263,23 @@ const ProjectHeader = ({
                 }}
               >
                 <SettingsIcon />
+              </IconButton>
+            )}
+
+            {/* Botão Grupos */}
+            {onOpenGroups && (
+              <IconButton 
+                color="inherit" 
+                onClick={onOpenGroups}
+                title="Gerenciar Grupos de Blocos"
+                sx={{ 
+                  bgcolor: 'rgba(25, 118, 210, 0.2)',
+                  '&:hover': {
+                    bgcolor: 'rgba(25, 118, 210, 0.3)',
+                  }
+                }}
+              >
+                <FolderIcon />
               </IconButton>
             )}
 
