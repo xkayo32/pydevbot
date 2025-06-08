@@ -431,6 +431,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ nodes, edges, onCl
         );
 
       case 'input':
+      case 'user-input':
         return (
           <Box>
             <Typography variant="body2" sx={{ mb: 1 }}>
@@ -459,6 +460,13 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ nodes, edges, onCl
           </Box>
         );
 
+      case 'user-input-response':
+        return (
+          <Typography variant="body2">
+            Resposta recebida: {content.value}
+          </Typography>
+        );
+
       default:
         return (
           <Typography variant="body2">
@@ -471,7 +479,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ nodes, edges, onCl
   // Verificar se deve mostrar campo de entrada
   const shouldShowInput = () => {
     return currentExecution?.requiresInput === true && 
-           ['input', 'text', 'message'].includes(currentExecution?.output?.type);
+           ['input', 'user-input', 'text', 'message'].includes(currentExecution?.output?.type);
   };
 
   // Verificar se deve mostrar opções
