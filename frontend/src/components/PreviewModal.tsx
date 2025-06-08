@@ -18,7 +18,7 @@ import {
   SmartToy
 } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
-import { ChatInterface } from './ChatInterface';
+import { DesktopChatInterface } from './DesktopChatInterface';
 import { Node, Edge } from 'reactflow';
 
 interface PreviewModalProps {
@@ -41,7 +41,6 @@ export const PreviewModal: React.FC<PreviewModalProps> = ({
   darkMode
 }) => {
   const theme = useTheme();
-  const [deviceMode, setDeviceMode] = React.useState<'mobile' | 'tablet' | 'desktop'>('mobile');
 
   // Converter nodes e edges para o formato do executor
   const flowNodes = nodes.map(node => ({
@@ -58,22 +57,6 @@ export const PreviewModal: React.FC<PreviewModalProps> = ({
     sourceHandle: edge.sourceHandle || undefined,
     targetHandle: edge.targetHandle || undefined
   }));
-
-  // Obter dimensões baseadas no dispositivo
-  const getDeviceDimensions = () => {
-    switch (deviceMode) {
-      case 'mobile':
-        return { width: 375, height: 667 };
-      case 'tablet':
-        return { width: 768, height: 1024 };
-      case 'desktop':
-        return { width: 1200, height: 800 };
-      default:
-        return { width: 375, height: 667 };
-    }
-  };
-
-  const dimensions = getDeviceDimensions();
 
   return (
     <Dialog
@@ -165,99 +148,21 @@ export const PreviewModal: React.FC<PreviewModalProps> = ({
             </Typography>
           </Box>
         ) : (
-          /* Simulador de dispositivo */
+          /* Interface do Chat Desktop */
           <Box
             sx={{
-              width: dimensions.width,
-              height: dimensions.height,
+              width: '100%',
+              height: '100%',
               bgcolor: theme.palette.background.paper,
-              borderRadius: deviceMode === 'mobile' ? 4 : 2,
-              boxShadow: theme.shadows[8],
-              border: `1px solid ${theme.palette.divider}`,
-              overflow: 'hidden',
-              position: 'relative',
-              ...(deviceMode === 'mobile' && {
-                borderRadius: 6,
-                '&::before': {
-                  content: '""',
-                  position: 'absolute',
-                  top: 8,
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: 60,
-                  height: 4,
-                  bgcolor: theme.palette.text.disabled,
-                  borderRadius: 2,
-                  zIndex: 1
-                },
-                '&::after': {
-                  content: '""',
-                  position: 'absolute',
-                  bottom: 8,
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: 40,
-                  height: 40,
-                  border: `2px solid ${theme.palette.text.disabled}`,
-                  borderRadius: '50%',
-                  zIndex: 1
-                }
-              })
+              overflow: 'hidden'
             }}
           >
-            {/* Barra de status do dispositivo móvel */}
-            {deviceMode === 'mobile' && (
-              <Box
-                sx={{
-                  height: 24,
-                  bgcolor: theme.palette.background.paper,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  px: 2,
-                  fontSize: 12,
-                  color: theme.palette.text.secondary,
-                  borderBottom: `1px solid ${theme.palette.divider}`
-                }}
-              >
-                <span>9:41</span>
-                <span>🔋 100%</span>
-              </Box>
-            )}
-
-            {/* Interface do Chat */}
-            <Box
-              sx={{
-                height: deviceMode === 'mobile' ? 'calc(100% - 24px)' : '100%',
-                overflow: 'hidden'
-              }}
-            >
-              <ChatInterface
-                nodes={flowNodes}
-                edges={flowEdges}
-                onClose={undefined} // Não mostrar botão fechar interno
-              />
-            </Box>
-          </Box>
-        )}
-
-        {/* Informações de debug */}
-        {nodes.length > 0 && (
-          <Box
-            sx={{
-              position: 'absolute',
-              bottom: 16,
-              right: 16,
-              bgcolor: theme.palette.background.paper,
-              borderRadius: 1,
-              p: 1,
-              boxShadow: theme.shadows[2],
-              border: `1px solid ${theme.palette.divider}`
-            }}
-          >
-            <Typography variant="caption" color="text.secondary">
-              Modo: {deviceMode} • {dimensions.width}x{dimensions.height}
-            </Typography>
+            <DesktopChatInterface
+              nodes={flowNodes}
+              edges={flowEdges}
+              onClose={undefined} // Não mostrar botão fechar interno
+              projectName={projectName}
+            />
           </Box>
         )}
       </DialogContent>
