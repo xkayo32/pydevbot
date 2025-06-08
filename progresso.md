@@ -122,10 +122,10 @@ Criar uma aplicação similar ao Typebot com frontend React e backend separado, 
 ### Fase 2.5: Melhorias de Design e Componentes (🎨 PRINCIPAL - Em Andamento)
 **Etapa Crítica de Ajustes Visuais e Funcionais:**
 
-- [x] **🔍 Investigação de Problemas de Fundo**
-  - [x] Identificado problema: TextNode não tinha tema escuro
-  - [x] Corrigido: Alterado nó inicial de 'text' para 'message' (com tema escuro)
-  - [x] Removido fundo branco desnecessário do exemplo inicial
+- [x] **🔍 Correção de Problemas de Fundo Branco**
+  - [x] Identificado problema: TextNode vs MessageNode (nodes iniciais já corrigidos)
+  - [x] Exemplo inicial usando MessageNode com tema escuro correto
+  - [x] Padronização de tema escuro confirmada nos nós principais
 
 - [ ] **📋 Sistema de Grupos de Blocos**
   - [ ] Implementar agrupamento de blocos
@@ -133,19 +133,20 @@ Criar uma aplicação similar ao Typebot com frontend React e backend separado, 
   - [ ] Interface para criação/edição de grupos
 
 - [x] **🔗 Melhoria das Conexões**
-  - [x] Melhoradas legendas para saídas do "Entrada de Texto"
-  - [x] Implementados chips visuais para "✓ Válido" e "✗ Inválido"
-  - [x] Legendas mais explicativas e visualmente atrativas
+  - [x] Implementadas legendas explicativas para UserInputNode
+  - [x] Chips visuais "✓ Válido" e "✗ Inválido" implementados
+  - [x] Handles coloridos (verde/vermelho) com posicionamento correto
+  - [x] Estilo responsivo com alpha blending para contraste
 
 - [x] **🎨 Redesign dos Modais de Edição**
-  - [x] Header moderno com gradiente azul
-  - [x] Ícone e informações do componente no header
-  - [x] Tema escuro consistente implementado
-  - [x] Botões com design melhorado e gradientes
+  - [x] Header moderno com gradiente azul implementado
+  - [x] Ícone de edição e informações do componente no header
+  - [x] Tema escuro consistente em todo o modal
   - [x] Layout em Paper com bordas arredondadas
+  - [x] Botões com gradientes e efeitos hover modernos
 
 - [ ] **🧩 Ajustes Componente por Componente**
-  - [x] UserInputNode - legendas melhoradas ✅
+  - [x] UserInputNode - legendas das saídas melhoradas ✅
   - [x] MessageNode - tema escuro já implementado ✅
   - [ ] ChoiceNode - ajustes de design
   - [ ] ConditionalNode - ajustes de design
